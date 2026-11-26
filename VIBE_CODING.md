@@ -6,18 +6,19 @@ Crear una aplicación Next.js funcional de cuatro rutas para descubrir libros, p
 
 ## Prompts principales utilizados
 
-1. **Brief del proyecto:** «Desarrollar una aplicación web completa con Next.js 16 o superior, App Router y TypeScript. Incluir al menos cuatro rutas, consumo de API mediante Route Handler, Server y Client Components, hooks de React, estados de carga y error, diseño responsive, `.env.example`, README y bitácora de Vibe Coding». La temática quedó a elección del desarrollador.
-2. **Dirección de producto y visual:** aplicación editorial en español para lectores, con un tono cálido y tranquilo; rutas de inicio, explorar, estantería y proyecto; identidad de papel, tinta, verde bosque y terracota.
-3. **Implementación por iteraciones:** primero navegación y portada; luego integración con Open Library a través de `/api/books`; después guardados, feedback de red, estados vacíos y documentación.
-4. **Criterio de calidad:** respetar accesibilidad, diseño adaptable, validación en servidor y cliente, metadatos, manejo explícito de fallos y revisión en navegador antes de entrega.
+1. **Enunciado original:** desarrollar una aplicación Next.js 16+ con App Router y TypeScript; incluir cuatro rutas o más, API por Route Handler, Server y Client Components, hooks de React, responsive, estados de carga/error, despliegue público y repositorio GitHub público con `.env.example`, README y bitácora.
+2. **Dirección de producto sintetizada a partir del enunciado:** aplicación editorial en español para lectores, con rutas de inicio, explorar, estantería y proyecto; identidad de papel, tinta, verde bosque y terracota.
+3. **Implementación iterativa:** primero navegación y portada; después catálogo Open Library vía `/api/books`; luego guardados de sesión, feedback de red, estados vacíos y documentación.
+4. **Criterios de validación aplicados:** accesibilidad, adaptación móvil/escritorio, validación en servidor, metadatos, manejo de fallos y comprobación real en navegador.
 
 ## Iteraciones realizadas
 
 - **01 — Estructura:** inspección del scaffold existente y decisión de mantener Next.js 16, TypeScript, App Router y Tailwind 4, en vez de regenerar el proyecto.
 - **02 — Experiencia:** creación de portada, navegación responsive y lenguaje visual editorial; las páginas comparten shell, mientras que sus contenidos mantienen responsabilidades separadas.
 - **03 — Catálogo:** búsqueda de libros desde la interfaz cliente, pasando por un Route Handler que valida entrada y consulta Open Library en el servidor. La API normaliza título, autor, año y cubierta.
-- **04 — Estantería:** guardar y quitar libros, contador en navegación, persistencia local y estados inicial, cargando, error y resultados vacíos.
-- **05 — Entrega:** documentación del proyecto, ejemplo de entorno y esta bitácora. Pendiente de completar el despliegue público y enlazar un repositorio GitHub del propietario.
+- **04 — Estantería:** guardar y quitar libros durante la sesión actual, contador en navegación y estados inicial, cargando, error y resultados vacíos. Se dejó explícito que no hay persistencia entre recargas ni sincronización entre dispositivos.
+- **05 — Validación:** comprobación en navegador de la portada, búsqueda real de “The Hobbit”, resultados con cubiertas y guardado en la estantería; recorrido de la página de proceso. `pnpm build` completó correctamente e incluyó la comprobación TypeScript.
+- **06 — Publicación:** despliegue de producción listo en Vercel y repositorio GitHub público. Los enlaces finales aparecen en el README.
 
 ## Decisiones técnicas
 
@@ -33,10 +34,11 @@ Crear una aplicación Next.js funcional de cuatro rutas para descubrir libros, p
 - **Evitar acoplar el cliente al proveedor:** se incorporó un endpoint interno `/api/books` para validación, normalización y manejo uniforme de errores.
 - **Variación del catálogo:** algunos resultados no tienen cubierta o año; la interfaz presenta una cubierta tipográfica de respaldo y omite el año cuando no existe.
 - **Estado vacío y error:** se añadieron mensajes diferenciados y opción de reintento, además de sugerencias de búsqueda.
-- **Persistencia:** la consigna no exige cuentas ni base de datos. Para este prototipo, los marcadores se almacenan localmente; se declara en el README que no hay sincronización entre dispositivos.
+- **Estado de guardados:** la consigna no exige cuentas ni base de datos. Para no fingir persistencia, los marcadores viven solo en memoria durante la sesión; se declara en el README que se reinician al recargar y no se sincronizan entre dispositivos.
 
-## Validación pendiente de entrega
+## Validación realizada
 
-- Ejecutar `pnpm exec tsc --noEmit` y `pnpm build`.
-- Recorrer las cuatro rutas en navegador y probar búsqueda, error/estado vacío y guardar/quitar un libro.
-- Publicar en Vercel y en GitHub; añadir enlaces públicos en el README después de que se proporcionen los destinos/cuenta necesarios.
+- `pnpm build`: compilación de producción correcta; TypeScript y prerender de las rutas completados por Next.js.
+- Navegador: portada revisada en escritorio y a 375 × 812; búsqueda real de “The Hobbit” devolvió resultados de Open Library, Guardar incrementó el contador y Quitar dejó la estantería vacía.
+- Navegador: se recorrieron las cuatro rutas, incluida `/guardados` y `/proceso`; el despliegue de producción quedó `Ready` en Vercel.
+- La vista guardada y las búsquedas requieren conexión a Open Library para consultar resultados; no se simula una base de datos ni se promete persistencia de marcadores.
