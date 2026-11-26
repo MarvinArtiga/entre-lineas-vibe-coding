@@ -6,7 +6,7 @@ Aplicación editorial en español para descubrir libros, guardar lecturas y expl
 
 - `/` — portada y selección editorial.
 - `/explorar` — búsqueda de libros en Open Library.
-- `/guardados` — estantería personal guardada en el navegador.
+- `/guardados` — estantería personal disponible durante la sesión actual.
 - `/proceso` — decisiones y proceso de Vibe Coding.
 
 ## Requisitos
@@ -30,11 +30,14 @@ Los libros guardados se mantienen en memoria durante la sesión actual; al recar
 
 ## Despliegue
 
-Importa el repositorio en Vercel, conserva los valores por defecto de Next.js y despliega. No se necesitan variables de entorno. Añade aquí el enlace público de Vercel cuando se complete el despliegue: **pendiente de publicación**.
+- **Aplicación en producción:** [Abrir Entre líneas](https://v0-project-weld-sigma-60.vercel.app)
+- **Repositorio público:** [MarvinArtiga/entre-lineas-vibe-coding](https://github.com/MarvinArtiga/entre-lineas-vibe-coding)
+
+El despliegue está publicado en Vercel. No se necesitan variables de entorno.
 
 ## Historial de desarrollo
 
-El historial comienza con el commit de entrega y los cambios iterativos registrados en Git. Para generar un commit descriptivo por cambio, usa mensajes como `feat: añade búsqueda de libros` y `docs: registra proceso de Vibe Coding`. No se inventa un historial anterior al trabajo realizado.
+El repositorio público conserva el commit inicial de la entrega y los commits descriptivos posteriores de documentación. La bitácora [VIBE_CODING.md](./VIBE_CODING.md) registra las iteraciones funcionales realizadas; no se presenta como historial Git previo a la entrega.
 
 ## Proceso de Vibe Coding
 
